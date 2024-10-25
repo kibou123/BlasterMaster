@@ -10,7 +10,6 @@ class Object
 {
 public:
 	Animation* _anim;
-	GSound* gSound;
 	float Width, Height;
 	bool AllowDraw, lock;
 	D3DXVECTOR2 position; //vị trí vẽ
@@ -185,42 +184,6 @@ public:
 		itoa(num, _text, 10);
 		OutputDebugString(_text);
 		OutputDebugString("\n");
-	}
-
-	static GSound* PlaySound(LPTSTR filename, bool isLoop = false)
-	{
-		Sound* sound = Graphic::GetInstance()->sound;
-		GSound* gSound = sound->LoadSound(filename);
-		if (gSound == NULL)
-		{
-			MessageBox(NULL, filename, "Error", MB_OK);
-			return NULL;
-		}
-		PlaySound(gSound, isLoop);
-		return gSound;
-	}
-
-	static void PlaySound(GSound* gSound, bool isLoop = false)
-	{
-		Sound* sound = Graphic::GetInstance()->sound;
-		if (gSound == NULL)
-		{
-			return;
-		}
-		sound->StopSound(gSound);
-		if (isLoop)
-		{
-			sound->LoopSound(gSound);
-		}
-		else
-		{
-			sound->PlaySoundA(gSound);
-		}
-	}
-
-	static void StopSound(GSound* sound)
-	{
-		Graphic::GetInstance()->sound->StopSound(sound);
 	}
 };
 

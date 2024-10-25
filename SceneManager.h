@@ -16,7 +16,6 @@ public:
 	float endTime;
 	float timedelay;
 	Sprite* sprite;
-	GSound* gSound;
 
 	enum SceneType
 	{

@@ -15,8 +15,6 @@ void Graphic::Init(HWND hind, int width, int height)
 	this->D3Ddev = NULL;
 	this->D3Dsprite = NULL;
 	this->mFont = NULL;
-	sound = new Sound(hind);
-	sound->Init_DirectSound();
 }
 
 Graphic::~Graphic()

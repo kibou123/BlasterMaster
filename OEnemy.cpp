@@ -139,11 +139,6 @@ void OEnemy::Update()
 {
 	if (HP <= 0 && State != Object::Dying)
 	{
-		if (gSound == NULL)
-			gSound = Object::PlaySoundA("./Resource Files/Sound/Destroy_Enemy.wav");
-		else
-			Object::PlaySoundA(gSound);
-
 		velocity.x = (Player::GetInstance()->GetFlipFlag()?-1:1)*EnemySpeed;
 		StartJump(-Gravity / 2, 16, Gravity);
 		State = Object::Dying;

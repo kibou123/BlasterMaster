@@ -16,12 +16,6 @@ SceneManager::SceneManager()
 }
 SceneManager::~SceneManager()
 {
-	if (gSound != NULL)
-	{
-		Object::StopSound(gSound);
-		delete gSound;
-		gSound = NULL;
-	}
 	delete sprite;
 }
 
@@ -29,13 +23,6 @@ SceneManager::~SceneManager()
 void SceneManager::InitDT()
 {
 	sceneType = Intro;
-	if (gSound != NULL)
-	{
-		Object::StopSound(gSound);
-		delete gSound;
-		gSound = NULL;
-	}
-	gSound = Object::PlaySoundA("./Resource Files/Sound/Intro.wav");
 	sprite = new Sprite("./Resource Files/intro.png");
 }
 void SceneManager::Map(int level)
@@ -44,12 +31,6 @@ void SceneManager::Map(int level)
 	sceneType = Wait;
 	timedelay = 0;
 	this->level = level;
-	if (gSound != NULL)
-	{
-		Object::StopSound(gSound);
-		delete gSound;
-		gSound = NULL;
-	}
 }
 //Update các scene game Update lớn nhất
 void SceneManager::Update()
@@ -119,17 +100,6 @@ void SceneManager::Update()
 		}
 		if (timedelay > 3)
 		{
-			if (gSound != NULL)
-			{
-				Object::StopSound(gSound);
-				delete gSound;
-				gSound = NULL;
-			}
-			if (level == 1)
-				gSound = Object::PlaySoundA("./Resource Files/Sound/BG_Map1.wav", true);
-			else
-				gSound = Object::PlaySoundA("./Resource Files/Sound/BG_Map2.wav", true);
-
 			sceneType = Play;
 			Player::GetInstance()->_life = StartLive;
 			//Player::GetInstance()->Init();
@@ -149,13 +119,6 @@ void SceneManager::Update()
 		}
 		if (timedelay > 2 && timedelay < 3)
 		{
-			if (gSound != NULL)
-			{
-				Object::StopSound(gSound);
-				delete gSound;
-				gSound = NULL;
-			}
-			gSound = Object::PlaySoundA("./Resource Files/Sound/Game_Over.wav");
 			sceneType = End;
 		}
 		break;
@@ -169,13 +132,6 @@ void SceneManager::Update()
 		if (Keyboard::GetInstance()->IsKeyDown(Dik_START) && timedelay > 1)
 		{
 			sceneType = Intro;
-			if (gSound != NULL)
-			{
-				Object::StopSound(gSound);
-				delete gSound;
-				gSound = NULL;
-			}
-			gSound = Object::PlaySoundA("./Resource Files/Sound/Intro.wav");
 			timedelay = 0.0f;
 		}
 		break;
