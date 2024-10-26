@@ -38,10 +38,8 @@ AnimationSprite* OItem::AnimationItem()
 	data[OBullet::EnemyBullet + Object::Dying] = { 22, 22 };
 	data[OEnemy::BulletBoss + Object::Jumping] = { 30 , 30 };
 
-	AnimationSprite* _animItem = new AnimationSprite(ItemXML, ItemPNG);
-	_animItem->SetDataAnimation(data);
-
 	_animationItem = new AnimationSprite(ItemXML, ItemPNG);
+	_animationItem->SetDataAnimation(data);
 	return _animationItem;
 }
 
