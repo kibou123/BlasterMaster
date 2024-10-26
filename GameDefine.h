@@ -1,7 +1,7 @@
 ﻿#pragma once
 #include "dinput.h"
 
-static float GameTime = 0.01666666666666667;
+static float GameTime = 0.0166666666666666666666666666666666666667;
 
 namespace Define
 {

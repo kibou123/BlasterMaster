@@ -4,13 +4,18 @@
 #include "Obullet.h"
 #include "OEnemy.h"
 
-Animation* OItem::GetAnimation()
+AnimationSprite* OItem::_animationItem = nullptr;
+AnimationSprite* OItem::AnimationItem()
 {
+	if (_animationItem != nullptr)
+	{
+		return _animationItem;
+	}
 	//Tạo Animation
-	Animation::DataAnimMap data;
+	AnimationSprite::DataAnimMap data;
 	// R
-	data[OItem::R + Object::Standing + 1] = { 23 , 23};
-	data[OItem::R + Object::Standing + 2] = { 24 , 26};
+	data[OItem::R + Object::Standing + 1] = { 23 , 23 };
+	data[OItem::R + Object::Standing + 2] = { 24 , 26 };
 	data[OItem::R + Object::Running] = { 0 , 0 };
 	data[OItem::R + Object::Running + 1] = { 27 , 29 };
 
@@ -20,17 +25,30 @@ Animation* OItem::GetAnimation()
 	data[OItem::F + Object::Jumping] = { 2 , 2 };
 	data[OItem::L + Object::Jumping] = { 3 , 3 };
 
+	data[OBullet::NormalBullet + Object::Running] = { 10 , 11 };
+	data[OBullet::RedBullet + Object::Running] = { 13 , 13 };
+	data[OBullet::FBullet + Object::Running] = { 14, 14 };
+	data[OBullet::LBullet + Object::Running] = { 15, 15 };
+	data[OBullet::EnemyBullet + Object::Running] = { 11, 12 };
+
+	data[OBullet::NormalBullet + Object::Dying] = { 22 , 22 };
+	data[OBullet::RedBullet + Object::Dying] = { 22 , 22 };
+	data[OBullet::FBullet + Object::Dying] = { 22, 22 };
+	data[OBullet::LBullet + Object::Dying] = { 22, 22 };
+	data[OBullet::EnemyBullet + Object::Dying] = { 22, 22 };
 	data[OEnemy::BulletBoss + Object::Jumping] = { 30 , 30 };
 
-	Animation* _animItem = new Animation(ItemXML, ItemPNG);
+	AnimationSprite* _animItem = new AnimationSprite(ItemXML, ItemPNG);
 	_animItem->SetDataAnimation(data);
-	return _animItem;
+
+	_animationItem = new AnimationSprite(ItemXML, ItemPNG);
+	return _animationItem;
 }
 
 OItem::OItem()
 {
 	Tag = Object::Item;
-	_anim = GetAnimation();
+	_anim = new Animation(AnimationItem());
 }
 
 OItem::~OItem()

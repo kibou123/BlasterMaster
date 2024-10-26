@@ -34,6 +34,12 @@
     <Filter Include="Object\Item">
       <UniqueIdentifier>{d2ae748e-a543-41db-9db7-01dfe2e91d7b}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Map\Core">
+      <UniqueIdentifier>{558dcd41-339c-480a-bb86-78e64764d9e1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Global\Graphic">
+      <UniqueIdentifier>{55564c24-c583-44bf-9153-bf4b39740510}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="TinyXML\tinystr.cpp">
@@ -48,29 +54,14 @@
     <ClCompile Include="TinyXML\tinyxmlparser.cpp">
       <Filter>TinyXMl</Filter>
     </ClCompile>
-    <ClCompile Include="Animation.cpp">
-      <Filter>Global</Filter>
-    </ClCompile>
     <ClCompile Include="Collision.cpp">
       <Filter>Global</Filter>
     </ClCompile>
     <ClCompile Include="Game.cpp">
       <Filter>Global</Filter>
     </ClCompile>
-    <ClCompile Include="Graphic.cpp">
-      <Filter>Global</Filter>
-    </ClCompile>
-    <ClCompile Include="InfoSprite.cpp">
-      <Filter>Global</Filter>
-    </ClCompile>
     <ClCompile Include="Keyboard.cpp">
       <Filter>Global</Filter>
-    </ClCompile>
-    <ClCompile Include="Sprite.cpp">
-      <Filter>Global</Filter>
-    </ClCompile>
-    <ClCompile Include="InfoMap.cpp">
-      <Filter>Map</Filter>
     </ClCompile>
     <ClCompile Include="Object.cpp">
       <Filter>Object</Filter>
@@ -80,9 +71,6 @@
     </ClCompile>
     <ClCompile Include="Viewport.cpp">
       <Filter>Global</Filter>
-    </ClCompile>
-    <ClCompile Include="TileSet.cpp">
-      <Filter>Map</Filter>
     </ClCompile>
     <ClCompile Include="Map.cpp">
       <Filter>Map</Filter>
@@ -109,12 +97,6 @@
     <ClCompile Include="DrawString.cpp">
       <Filter>Global\GUI</Filter>
     </ClCompile>
-    <ClCompile Include="MapObject.cpp">
-      <Filter>Map</Filter>
-    </ClCompile>
-    <ClCompile Include="MapObjectGroup.cpp">
-      <Filter>Map</Filter>
-    </ClCompile>
     <ClCompile Include="debug.cpp">
       <Filter>Global</Filter>
     </ClCompile>
@@ -133,6 +115,33 @@
     <ClCompile Include="FuncItem.cpp">
       <Filter>Object\Item</Filter>
     </ClCompile>
+    <ClCompile Include="TileSet.cpp">
+      <Filter>Map\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="MapObjectGroup.cpp">
+      <Filter>Map\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="MapObject.cpp">
+      <Filter>Map\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="InfoMap.cpp">
+      <Filter>Map\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="AnimationSprite.cpp">
+      <Filter>Global\Graphic</Filter>
+    </ClCompile>
+    <ClCompile Include="Sprite.cpp">
+      <Filter>Global\Graphic</Filter>
+    </ClCompile>
+    <ClCompile Include="Graphic.cpp">
+      <Filter>Global\Graphic</Filter>
+    </ClCompile>
+    <ClCompile Include="InfoSprite.cpp">
+      <Filter>Global\Graphic</Filter>
+    </ClCompile>
+    <ClCompile Include="Animation.cpp">
+      <Filter>Global\Graphic</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="TinyXML\tinystr.h">
@@ -141,29 +150,14 @@
     <ClInclude Include="TinyXML\tinyxml.h">
       <Filter>TinyXMl</Filter>
     </ClInclude>
-    <ClInclude Include="Animation.h">
-      <Filter>Global</Filter>
-    </ClInclude>
     <ClInclude Include="Collision.h">
       <Filter>Global</Filter>
     </ClInclude>
     <ClInclude Include="Game.h">
       <Filter>Global</Filter>
     </ClInclude>
-    <ClInclude Include="Graphic.h">
-      <Filter>Global</Filter>
-    </ClInclude>
-    <ClInclude Include="InfoSprite.h">
-      <Filter>Global</Filter>
-    </ClInclude>
     <ClInclude Include="Keyboard.h">
       <Filter>Global</Filter>
-    </ClInclude>
-    <ClInclude Include="Sprite.h">
-      <Filter>Global</Filter>
-    </ClInclude>
-    <ClInclude Include="InfoMap.h">
-      <Filter>Map</Filter>
     </ClInclude>
     <ClInclude Include="Object.h">
       <Filter>Object</Filter>
@@ -176,9 +170,6 @@
     </ClInclude>
     <ClInclude Include="Viewport.h">
       <Filter>Global</Filter>
-    </ClInclude>
-    <ClInclude Include="TileSet.h">
-      <Filter>Map</Filter>
     </ClInclude>
     <ClInclude Include="Map.h">
       <Filter>Map</Filter>
@@ -205,12 +196,6 @@
     <ClInclude Include="DrawString.h">
       <Filter>Global\GUI</Filter>
     </ClInclude>
-    <ClInclude Include="MapObject.h">
-      <Filter>Map</Filter>
-    </ClInclude>
-    <ClInclude Include="MapObjectGroup.h">
-      <Filter>Map</Filter>
-    </ClInclude>
     <ClInclude Include="OEnemy.h">
       <Filter>Object\Enemy</Filter>
     </ClInclude>
@@ -225,6 +210,33 @@
     </ClInclude>
     <ClInclude Include="FuncItem.h">
       <Filter>Object\Item</Filter>
+    </ClInclude>
+    <ClInclude Include="TileSet.h">
+      <Filter>Map\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="MapObjectGroup.h">
+      <Filter>Map\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="MapObject.h">
+      <Filter>Map\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="InfoMap.h">
+      <Filter>Map\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="AnimationSprite.h">
+      <Filter>Global\Graphic</Filter>
+    </ClInclude>
+    <ClInclude Include="Sprite.h">
+      <Filter>Global\Graphic</Filter>
+    </ClInclude>
+    <ClInclude Include="Graphic.h">
+      <Filter>Global\Graphic</Filter>
+    </ClInclude>
+    <ClInclude Include="InfoSprite.h">
+      <Filter>Global\Graphic</Filter>
+    </ClInclude>
+    <ClInclude Include="Animation.h">
+      <Filter>Global\Graphic</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

@@ -30,8 +30,14 @@ Player::~Player()
 	delete _player;
 }
 
-Animation::DataAnimMap dataM()
+
+AnimationSprite* Player::_animationPlayer = nullptr;
+AnimationSprite* Player::AnimationPlayer()
 {
+	if (_animationPlayer != nullptr)
+	{
+		return _animationPlayer;
+	}
 
 	// 1: bắn bình thường
 	// 2: giơ súng lên
@@ -42,7 +48,7 @@ Animation::DataAnimMap dataM()
 	// 7: giơ súng chéo xuống rồi bắn
 	// 
 	//Tạo Animation
-	Animation::DataAnimMap data;
+	AnimationSprite::DataAnimMap data;
 	//Small
 	data[Player::Blue + Object::Standing] = { 48, 48 };
 	data[Player::Blue + Object::Standing + 1] = { 49, 49 }; // đứng + bắn
@@ -64,8 +70,8 @@ Animation::DataAnimMap dataM()
 	data[Player::Blue + Object::Sitting + 1] = { 15, 15 }; // nằm bắn
 
 
-	data[Player::Blue + Object::Dying] = { 44, 47  };
-	data[Player::Blue + Object::Diving ] = { 41, 42 }; // lặn 
+	data[Player::Blue + Object::Dying] = { 44, 47 };
+	data[Player::Blue + Object::Diving] = { 41, 42 }; // lặn 
 
 
 	data[Player::Blue + Object::Swimming] = { 33, 34 }; // Bơi
@@ -75,9 +81,11 @@ Animation::DataAnimMap dataM()
 	data[Player::Blue + Object::Swimming + 4] = { 37, 37 };// Bơi + súng + chéo 
 	data[Player::Blue + Object::Swimming + 5] = { 38, 38 };// Bơi + súng + chéo + bắn
 
-	data[Player::Blue + Object::Falling] = {50, 50 };
+	data[Player::Blue + Object::Falling] = { 50, 50 };
 
-	return data;
+	_animationPlayer = new AnimationSprite(PlayerXML, PlayerPNG);
+	_animationPlayer->SetDataAnimation(data);
+	return _animationPlayer;
 }
 
 void Player::Init()
@@ -94,9 +102,7 @@ void Player::Init()
 	GunType = 0;
 
 	type = _playerType;
-	Animation::DataAnimMap data = dataM();
-	_anim = new Animation(PlayerXML, PlayerPNG);
-	_anim->SetDataAnimation(data);
+	_anim = new Animation(AnimationPlayer());
 	SetBound(38, 48);
 
 	isImmortal = true;

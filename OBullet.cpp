@@ -2,32 +2,9 @@
 #include "Player.h"
 #include "ObjectManager.h"
 
-Animation* OBullet::GetAnimationBullet()
-{
-	//Tạo Animation
-	Animation::DataAnimMap data;
-	// Soldier
-	data[OBullet::NormalBullet + Object::Running] = { 10 , 11 };
-	data[OBullet::RedBullet + Object::Running] = { 13 , 13 };
-	data[OBullet::FBullet + Object::Running] = {14, 14};
-	data[OBullet::LBullet + Object::Running] = { 15, 15 };
-	data[OBullet::EnemyBullet + Object::Running] = { 11, 12 };
-
-	data[OBullet::NormalBullet + Object::Dying] = { 22 , 22};
-	data[OBullet::RedBullet + Object::Dying] = { 22 , 22 };
-	data[OBullet::FBullet + Object::Dying] = { 22, 22 };
-	data[OBullet::LBullet + Object::Dying] = { 22, 22 };
-	data[OBullet::EnemyBullet + Object::Dying] = { 22, 22 };
-
-
-	Animation* _anim = new Animation(ItemXML, ItemPNG);
-	_anim->SetDataAnimation(data);
-	return _anim;
-}
-
 OBullet::OBullet()
 {
-	_anim = GetAnimationBullet();
+	_anim = new Animation(OItem::AnimationItem());
 	Tag = Object::Bullet;
 }
 

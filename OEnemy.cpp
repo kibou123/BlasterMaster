@@ -1,10 +1,15 @@
 ﻿#include "OEnemy.h"
 #include "Player.h"
 
-Animation* OEnemy::GetAnimationEnemy()
+AnimationSprite* OEnemy::_animationEnemy = nullptr;
+AnimationSprite* OEnemy::AnimationEnemy()
 {
+	if (_animationEnemy != nullptr)
+	{
+		return _animationEnemy;
+	}
 	//Tạo Animation
-	Animation::DataAnimMap data;
+	AnimationSprite::DataAnimMap data;
 	// Soldier
 	data[OEnemy::Soldier + Object::Standing] = { 0 , 5};
 	data[OEnemy::Soldier + Object::Dying] = { 86 , 88 };
@@ -39,15 +44,15 @@ Animation* OEnemy::GetAnimationEnemy()
 	data[OEnemy::Gunboss + Object::Standing] = { 97, 97 };
 	data[OEnemy::Gunboss + Object::Dying] = { 98, 98 };
 
-	Animation* _animEnemy = new Animation(EnemyXML, EnemyPNG);
-	_animEnemy->SetDataAnimation(data);
-	return _animEnemy;
+	_animationEnemy = new AnimationSprite(EnemyXML, EnemyPNG);
+	_animationEnemy->SetDataAnimation(data);
+	return _animationEnemy;
 }
 
 OEnemy::OEnemy()
 {
 	Tag = Object::Enemy;
-	_anim = GetAnimationEnemy();
+	_anim = new Animation(AnimationEnemy());
 }
 
 OEnemy::~OEnemy()

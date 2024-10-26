@@ -36,10 +36,11 @@ public:
 	void SetBound(float width, float height);
 	void Render(Viewport* viewport);
 	void StartExplode();
-	static Animation* GetAnimationEnemy();
-
 	int GetIndexGun()
 	{
 		return Object::GetArrowIndexByAngle(AngleGun);
 	}
+
+	static AnimationSprite* _animationEnemy;
+	static AnimationSprite* AnimationEnemy();
 };

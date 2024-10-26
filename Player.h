@@ -39,4 +39,7 @@ public:
 	static Player* GetInstance();
 
 	int GetIndexGun();
+
+	static AnimationSprite* _animationPlayer;
+	static AnimationSprite* AnimationPlayer();
 };

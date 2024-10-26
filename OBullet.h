@@ -48,5 +48,4 @@ public:
 	void OnCollision(Object* obj);
 	void SetBound(float width, float height);
 	void Render(Viewport* viewport);
-	static Animation* GetAnimationBullet();
 };

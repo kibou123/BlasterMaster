@@ -1,22 +1,13 @@
 ﻿#include "Animation.h"
 
-Animation::Animation(const char* pathInfo, const char* pathPNG):Sprite(pathPNG)
+Animation::Animation(AnimationSprite* ani)
 {
-	_infoAnim = new InfoSprite(pathInfo);
+	animation = ani;
 	delay = 0;
 	start = 0;
 	end = 0;
-	scale = D3DXVECTOR2(1, 1);
-	position = D3DXVECTOR2(0, 0);
-	FlipFlag = false;
-	angle = 0;
 	Pause = false;
-}
 
-Animation::Animation()
-{
-	start = 0;
-	end = 0;
 	scale = D3DXVECTOR2(1, 1);
 	position = D3DXVECTOR2(0, 0);
 	FlipFlag = false;
@@ -25,7 +16,16 @@ Animation::Animation()
 
 Animation::~Animation()
 {
-	delete _infoAnim;
+	delete animation;
+}
+
+int Animation::GetIndex()
+{
+	return Index;
+}
+void Animation::SetIndex(int index)
+{
+	Index = index;
 }
 
 void Animation::SetFrame(D3DXVECTOR2 Position, bool Flip, int Delay, int Start, int End)
@@ -38,37 +38,23 @@ void Animation::SetFrame(D3DXVECTOR2 Position, bool Flip, int Delay, int Start, 
 	Index = Start;
 }
 
-void Animation::SetDataAnimation(DataAnimMap data)
-{
-	_dataAnim = data;
-}
-
 void Animation::NewAnimationByIndex(int index)
 {
-	DataAnim data = _dataAnim[index];
+	AnimationSprite::DataAnim data = animation->_dataAnim[index];
 	start = data.start;
 	end = data.end;
 	delay = data.delay;
 }
 
-int Animation::GetIndex()
-{
-	return Index;
-}
-void Animation::SetIndex(int index)
-{
-	Index = index;
-}
-
 //Rect
 RECT Animation::GetRectByIndex(int index)
 {
-	return _infoAnim->GetRect(index);
+	return animation->_infoAnim->GetRect(index);
 }
 
 InfoSprite::Infoframe Animation::GetCurrentFrameInfo()
 {
-	return _infoAnim->GetInfoByIndex(Index);
+	return animation->_infoAnim->GetInfoByIndex(Index);
 }
 
 bool Animation::GetFlipFlag()
@@ -101,10 +87,34 @@ void Animation::SetPause(bool pause, int index)
 	Pause = pause;
 }
 
+D3DXVECTOR2 Animation::GetPosition()
+{
+	return position;
+}
+void Animation::SetPosition(D3DXVECTOR2 Position)
+{
+	position = Position;
+}
+
+void Animation::SetFlipFlag(bool flag)
+{
+	FlipFlag = flag;
+}
+
+//Lật hình theo trục y
+void Animation::Flip(bool flag)
+{
+	if (flag)
+	{
+		scale = D3DXVECTOR2(-1, 1);
+	}
+	else scale = D3DXVECTOR2(1, 1);
+}
+
 void Animation::Update()
 {
 	//Chuyển frame tiếp theo
-	if (TimeCurrent * 1000 >= delay )
+	if (TimeCurrent * 1000 >= delay)
 	{
 		TimeCurrent = 0;
 		Index++;
@@ -120,12 +130,10 @@ void Animation::Update()
 	{
 		Index = IndexPause;
 	}
-	//Kiểm tra Flip
-	Flip(FlipFlag);
 	//Set rect mới
-	SetRect(GetRectByIndex(Index));
+	rect = GetRectByIndex(Index);
 	//Lấy center
-	center.x = (rect.right - rect.left)/2;
+	center.x = (rect.right - rect.left) / 2;
 	center.y = (rect.bottom - rect.top) / 2;
 	////Kiểm tra center flip chỉnh transform
 	transform.x = 0;
@@ -134,8 +142,22 @@ void Animation::Update()
 
 D3DXVECTOR2 Animation::GunPos(int index)
 {
-	auto config = _infoAnim->GetInfoByIndex(_dataAnim[index].start);
+	auto config = animation->_infoAnim->GetInfoByIndex(animation->_dataAnim[index].start);
 	if (config.sx != 0)
 		return D3DXVECTOR2(config.sx, config.sy);
 	return D3DXVECTOR2(0, 0);
+}
+
+void Animation::Render(Viewport* viewport)
+{
+	animation->SetData(rect, center, position, scale, transform, angle);
+	animation->Flip(FlipFlag);
+	animation->Render(viewport);
+}
+
+void Animation::Render()
+{
+	animation->SetData(rect, center, position, scale, transform, angle);
+	animation->Flip(FlipFlag);
+	animation->Render();
 }

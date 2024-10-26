@@ -70,7 +70,7 @@
   <object id="181" x="1056" y="112" width="128" height="16"/>
  </objectgroup>
  <objectgroup name="Player">
-  <object id="237" x="3008" y="80" width="16" height="16"/>
+  <object id="237" x="308" y="80" width="16" height="16"/>
  </objectgroup>
  <objectgroup name="Water">
   <object id="66" x="0" y="214" width="1776" height="26"/>

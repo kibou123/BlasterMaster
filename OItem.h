@@ -32,5 +32,7 @@ public:
 	void OnCollision(Object* obj);
 	void SetBound(float width, float height);
 	void Render(Viewport* viewport);
-	static Animation* GetAnimation();
+
+	static AnimationSprite* _animationItem;
+	static AnimationSprite* AnimationItem();
 };
